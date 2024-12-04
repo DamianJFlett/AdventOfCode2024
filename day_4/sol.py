@@ -46,4 +46,49 @@ for row in ws_diagonal:
 for row in ws_diagonal2:
     total_xmas += len(re.findall(r'XMAS', row))
     total_xmas += len(re.findall(r'SAMX', row))
-print(total_xmas)
+print("part 1 soln is ", total_xmas)
+
+#part 2
+
+
+#method - search for mas, retrive original coordinates in ws with logic 
+# since first element of rows of diagonal matrix is first element of columns of ws
+# then search directly for ms at antidiagonals of a and add if theyre there
+total_x_mas = 0
+for (index, row) in enumerate(ws_diagonal):
+    masses = re.finditer(r'MAS', row)
+    for match in masses:
+        x, y = match.start(), match.start()
+def diagonal_to_coordinates(diagonal_matrix, original_shape):
+    """
+    Generate a mapping from diagonal matrix indices to original matrix coordinates.
+    
+    Args:
+        diagonal_matrix: A list of lists, representing the diagonals of the original matrix.
+        original_shape: A tuple (rows, cols) representing the dimensions of the original matrix.
+
+    Returns:
+        A dictionary where keys are (d_idx, elem_idx) indices in the diagonal matrix, 
+        and values are (row, col) coordinates in the original matrix.
+    """
+    mapping = {}
+    rows, cols = original_shape
+
+    for d_idx, diagonal in enumerate(diagonal_matrix):
+        for elem_idx, value in enumerate(diagonal):
+            # Recover the original matrix coordinates
+            # Diagonal index (d_idx) is the sum of row and column indices (i + j)
+            # Column index is `elem_idx`
+            row = elem_idx
+            col = d_idx - row
+            # Ensure indices are valid for the original matrix dimensions
+            mapping[(d_idx, elem_idx)] = (row, col)
+
+    return mapping
+
+# Example usage
+diagonal_matrix = [[1], [4,2], [7,5,3],[8,6],[9]]  # Diagonal representation
+original_shape = (3,3)  # Shape of the original matrix
+
+coordinate_mapping = diagonal_to_coordinates(diagonal_matrix, original_shape)
+print(coordinate_mapping)
