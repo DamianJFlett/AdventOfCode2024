@@ -6,8 +6,8 @@ raw_relations = []
 raw_orders = []
 relations = {}
 orders = []
-total = 0
-
+total_valid = 0
+total_invalid =0
 for l in f:
     line_num += 1
     if line_num <= 1176:
@@ -38,5 +38,5 @@ for order in orders:
             if order[i] in relations[num]:
                 valid = False
     if valid: 
-        total += get_middle_element(order)
-print(total)
+        total_valid += get_middle_element(order)
+print("Part one solution is", total_valid)
