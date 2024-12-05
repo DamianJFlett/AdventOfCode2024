@@ -6,12 +6,10 @@ f = open("input.txt", "r")
 ws = []
 for l in f:
     ws.append(l[:-1])
-
 ws_transpose = [""] * len(ws[0])
 for (lindex, l) in enumerate(ws):
     for (cindex, c) in enumerate(l):
         ws_transpose[cindex] = ws_transpose[cindex] + c
-
 
 # to construct these, lets notice something about this diagonal matrix in n dimensions - 
 # nth row has all the a_ij s.t. i+j=n+1. Easy here since matrix is square. To see this, notice that moving along a diagonal 
@@ -51,44 +49,75 @@ print("part 1 soln is ", total_xmas)
 #part 2
 
 
-#method - search for mas, retrive original coordinates in ws with logic 
-# since first element of rows of diagonal matrix is first element of columns of ws
-# then search directly for ms at antidiagonals of a and add if theyre there
-total_x_mas = 0
-for (index, row) in enumerate(ws_diagonal):
-    masses = re.finditer(r'MAS', row)
-    for match in masses:
-        x, y = match.start(), match.start()
-def diagonal_to_coordinates(diagonal_matrix, original_shape):
-    """
-    Generate a mapping from diagonal matrix indices to original matrix coordinates.
+# THROW ALL OF THIS IN THE BIN WE OUT EHRE DOING BRUTE FORCE 
+# THROW ALL OF THIS IN THE BIN WE OUT EHRE DOING BRUTE FORCE 
+# THROW ALL OF THIS IN THE BIN WE OUT EHRE DOING BRUTE FORCE 
+# THROW ALL OF THIS IN THE BIN WE OUT EHRE DOING BRUTE FORCE 
+# THROW ALL OF THIS IN THE BIN WE OUT EHRE DOING BRUTE FORCE 
+# THROW ALL OF THIS IN THE BIN WE OUT EHRE DOING BRUTE FORCE 
+# THROW ALL OF THIS IN THE BIN WE OUT EHRE DOING BRUTE FORCE 
+# THROW ALL OF THIS IN THE BIN WE OUT EHRE DOING BRUTE FORCE 
+# THROW ALL OF THIS IN THE BIN WE OUT EHRE DOING BRUTE FORCE 
+# THROW ALL OF THIS IN THE BIN WE OUT EHRE DOING BRUTE FORCE 
+
+
+
+
+# """ 
+# """ #reference to chatgpt for this one, struggled a lot with this method. 
+# # https://chatgpt.com/share/6750e381-ff90-8005-a328-fd82817264d3
+# def rotated_to_unrotated(n, k, num_rows, num_cols):
+#     """
+#     Converts diagonal coordinates (n, k) from the rotated matrix representation
+#     back to the original matrix coordinates (i, j).
+
+#     Parameters:
+#     - n: Index of the diagonal in the rotated representation.
+#     - k: Position along the diagonal (0-indexed).
+#     - num_rows: Number of rows in the original matrix.
+#     - num_cols: Number of columns in the original matrix.
+
+#     Returns:
+#     - (i, j): Coordinates in the original unrotated matrix.
+#     """
+#     # Find the first valid row index for diagonal n
+#     first_i = max(0, n - (num_cols - 1))  # Start of the diagonal within row bounds
+#     i = first_i + k  # Move k steps along the diagonal
     
-    Args:
-        diagonal_matrix: A list of lists, representing the diagonals of the original matrix.
-        original_shape: A tuple (rows, cols) representing the dimensions of the original matrix.
+#     # Compute column index
+#     j = n - i
+    
+#     # Validate indices
+#     if 0 <= i < num_rows and 0 <= j < num_cols:
+#         return i, j
+#     return None  # Return None if out of bounds
 
-    Returns:
-        A dictionary where keys are (d_idx, elem_idx) indices in the diagonal matrix, 
-        and values are (row, col) coordinates in the original matrix.
-    """
-    mapping = {}
-    rows, cols = original_shape
+# #method - search for mas, retrive original coordinates in ws with logic 
+# # since first element of rows of diagonal matrix is first element of columns of ws
+# # then search directly for ms at antidiagonals of a and add if theyre there
+# total_x_mas = 0
 
-    for d_idx, diagonal in enumerate(diagonal_matrix):
-        for elem_idx, value in enumerate(diagonal):
-            # Recover the original matrix coordinates
-            # Diagonal index (d_idx) is the sum of row and column indices (i + j)
-            # Column index is `elem_idx`
-            row = elem_idx
-            col = d_idx - row
-            # Ensure indices are valid for the original matrix dimensions
-            mapping[(d_idx, elem_idx)] = (row, col)
+# for (index, row) in enumerate(ws_diagonal):
+#     masses = re.finditer(r'MAS|SAM', row)
+#     for match in masses:
+#         Ax, Ay = rotated_to_unrotated(index, match.start() + 1, len(ws), len(ws))
+#         if (ws[Ax+1][Ay+1] == "S" and ws[Ax-1][Ay-1] == "M") or (ws[Ax-1][Ay-1] == "S" and ws[Ax+1][Ay+1] == "M"):
+#             total_x_mas += 1
 
-    return mapping
 
-# Example usage
-diagonal_matrix = [[1], [4,2], [7,5,3],[8,6],[9]]  # Diagonal representation
-original_shape = (3,3)  # Shape of the original matrix
 
-coordinate_mapping = diagonal_to_coordinates(diagonal_matrix, original_shape)
-print(coordinate_mapping)
+# print("part 2 soln is ", total_x_mas) """ """
+
+total_x_mas = 0
+for (x, row) in enumerate(ws):
+    for (y, c) in enumerate(row):
+        if 1 <= x <= len(ws)-2 and 1 <= y <= len(ws) - 2:          
+            if c == "A" and ws[x-1][y-1] == "M" and ws[x-1][y+1] == "M" and ws[x+1][y-1] == "S" and ws[x+1][y+1] == "S":
+                total_x_mas += 1
+            elif c == "A" and ws[x-1][y-1] == "M" and ws[x-1][y+1] == "S" and ws[x+1][y-1] == "M" and ws[x+1][y+1] == "S":
+                total_x_mas += 1 
+            elif c == "A" and ws[x-1][y-1] == "S" and ws[x-1][y+1] == "M" and ws[x+1][y-1] == "S" and ws[x+1][y+1] == "M":
+                total_x_mas += 1 
+            elif c == "A" and ws[x-1][y-1] == "S" and ws[x-1][y+1] == "S" and ws[x+1][y-1] == "M" and ws[x+1][y+1] == "M":
+                total_x_mas += 1 
+print(total_x_mas)
