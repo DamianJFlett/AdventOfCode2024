@@ -21,6 +21,7 @@ for (y, l) in enumerate(f):
       3
 
 """
+#note that this is incomplete if your input includes a corner. I will not be fixing it, which only becomes a problem in part 2 for my input. 
 def visit_no(x, y):
     visited = set()
     dir = 1
