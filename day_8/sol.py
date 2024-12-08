@@ -1,5 +1,3 @@
-from datetime import datetime
-startTime = datetime.now()
 f = open("input.txt", "r")
 
 

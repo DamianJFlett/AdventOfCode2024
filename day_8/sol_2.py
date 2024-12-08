@@ -1,7 +1,5 @@
 f = open("input.txt", "r")
 from math import gcd
-from datetime import datetime
-startTime = datetime.now()
 
 total = 0
 antennas = {}
