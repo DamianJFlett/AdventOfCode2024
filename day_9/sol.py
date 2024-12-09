@@ -1,14 +1,11 @@
-# Open and read the input file
 with open("input.txt", "r") as f:
     s = "".join(line.strip() for line in f)
 
-# Initialize variables
 pos = 0
 free = False
 cur_id = 0
 s2 = []
 
-# Build the initial string s2
 for c in s:
     if free:
         s2.extend(['.'] * int(c))
