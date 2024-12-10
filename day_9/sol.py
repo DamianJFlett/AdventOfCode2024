@@ -19,7 +19,6 @@ def check_valid(s):
 
 n = len(s2)
 total = 0
-
 for end_index in range(n - 1, -1, -1):
     if s2[end_index] != '.':
         for start_index in range(n):
