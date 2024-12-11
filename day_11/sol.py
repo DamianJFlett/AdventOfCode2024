@@ -1,4 +1,4 @@
-from bit_vector import BitVector
+from bit_vector import BitVector # tried this bitvector approach using my comp3506 assignment, doesn't work for a couple reasons lol. defaultdict is better
 from collections import defaultdict
 f = open("input.txt", "r")
 nums = [41078, 18, 7, 0, 4785508, 535256, 8154, 447]
