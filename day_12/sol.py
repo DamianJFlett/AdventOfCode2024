@@ -149,7 +149,7 @@ def bfs_count_sides(row, col):
         directions = [(-1, 0), (0, -1), (1, 0), (0, 1)]
         for d in directions:
             p = add(d, removed)
-            if not (0 <= p[0] < len(grid)) or not (0 <= p[1] < len(grid[1])):
+            if not (0 <= p[0] < len(grid)) or not (0 <= p[1] < len(grid[1])): # not enough
                 boundary.append(removed)
         for node in get_neighbours(removed[0], removed[1]):
             if node not in seen:
