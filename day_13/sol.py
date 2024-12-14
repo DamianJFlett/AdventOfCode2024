@@ -58,5 +58,5 @@ for (index, prize) in enumerate(prizes):
     print(prize, A1, A2, B1, B2, sol)
     if abs(sol[0]-round(sol[0])) <= 0.001 and abs(sol[1]-round(sol[1])) <= 0.001:
         total += (round(sol[0])*3 + round(sol[1]))
-print("part oen solution is ", total)
+print("part two solution is ", total)
 

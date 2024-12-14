@@ -161,8 +161,8 @@ def bfs_count_sides(row, col):
 
 
 print(bfs_count_sides(0, 0))
-for (row, l) in grid:
-    for (col, c) in l:
+for (row, l) in enumerate(grid):
+    for (col, c) in enumerate(l):
         pass
 
 # total = 0
