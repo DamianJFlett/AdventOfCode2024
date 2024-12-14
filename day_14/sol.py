@@ -48,4 +48,4 @@ for pos in finals:
             q3 += 1
         else:
             q4 += 1
-print(q1, q2, q3, q4, q1*q2*q3*q4)
+print(q1, q2, q3, q4, q1*q2*q3*q4, len(init))
