@@ -111,7 +111,9 @@ class assembly():
             self.run()
         return test
 
-    
+    #this takes knowledge of my specific input to more efficiently run the program. 
+    def whitebox_run(self):
+        pass
 my_assembly = assembly()
 print(my_assembly.instructions, my_assembly.inputs, my_assembly.A, my_assembly.B, my_assembly.C)
 my_assembly.run()
